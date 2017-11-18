@@ -1,5 +1,4 @@
 import React from 'react';
-import { RegisterPage } from './components/RegisterPage';
 import { LandingPage } from './components/LandingPage';
 import ReduxPromise from 'redux-promise';
 import ReactDOM from 'react-dom';
@@ -26,5 +25,11 @@ firebase.auth().onAuthStateChanged((user) => {
   } else {
     console.log('logged out');
   }
-
 });
+
+
+
+
+
+
+
