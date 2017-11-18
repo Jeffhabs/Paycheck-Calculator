@@ -10,8 +10,7 @@ import App from './components/app';
 import reducers from './reducers';
 import { firebase } from './firebase/firebase';
 
-const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
-
+const createStoreWithMiddleware = applyMiddleware()(createStore);
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <App />
@@ -25,6 +24,12 @@ firebase.auth().onAuthStateChanged((user) => {
   } else {
     console.log('logged out');
   }
+});
+
+firebase.auth().signInAnonymously().then((user) => {
+  
+}).catch((error) => {
+  console.log(`Error: ${error}`);
 });
 
 

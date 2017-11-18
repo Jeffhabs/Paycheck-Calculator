@@ -8,33 +8,119 @@ export default class LandingPage extends Component {
     super(props);
 
     this.state = {
-      term:  ''
+      User: {
+        fName: '',
+        lName: '',
+        hourly: true,
+        fica: 0,
+        federal: 0,
+        state: 0
+      }
     }
-
-    this.onInputChange = this.onInputChange.bind(this);
   }
 
-  onInputChange(event) {
-    this.setState({ term: event.target.value });
+  onFnameChange = (event) => {
+    var user = {...this.state.User };
+    user.fName = event.target.value;
+    this.setState({ User: user });
   }
 
-  onFormSubmit(event) {
-    // TODO: CALL ACTION
-    event.peventDefault;
+  onFormSubmit = (event) => {
+    event.preventDefault();
+    console.log('USER: ', this.state.User);
+  }
+
+  onLnameChange = (event) => {
+    var user = {...this.state.User };
+    user.lName = event.target.value;
+    this.setState({ User: user });
+  }
+
+  onHourlyChecked = (event) => {
+    var user = {...this.state.User };
+    user.hourly ? user.hourly = false : user.hourly = true;
+    this.setState({ User: user });
+  }
+
+  onSalaryChecked = (event) => {
+    var user = {...this.state.User };
+    user.salary ? user.salary = false : user.salary = true;
+    this.setState({ User: user });
+  }
+
+  onFicaChanged = (event) => {
+    var user = {...this.state.User };
+    user.fica = event.target.value;
+    this.setState({ User: user });
+  }
+
+  onFederalChanged = (event) => {
+    var user = {...this.state.User };
+    user.federal = event.target.value;
+    this.setState({ User: user });
+  }
+
+  onStateChanged = (event) => {
+    var user = {...this.state.User };
+    user.state = event.target.value;
+    this.setState({ User: user });
   }
 
   render() {
     return (
-      <form onSubmit={this.onFormSubmit} className="input-group">
-        <input 
-          placeholder="Get a five-day forecast in your favorite cities"
-          className="form-control"
-          value={this.state.term}
-          onChange={this.onInputChange} />
-        <span className="input-group-btn">
-          <button type="submit" className="btn btn-secondary">Submit</button>
-        </span>
-      </form>
+      <div className="setup-container">
+        <form onSubmit={this.onFormSubmit}>
+          <div className="form-group">
+            <label>First Name</label>
+            <input onChange={this.onFnameChange} type="text" className="form-control" placeholder="Enter employee first name"></input>
+          </div>
+          <div className="form-group">
+            <label>Last Name</label>
+            <input onChange={this.onLnameChange} type="text" className="form-control" placeholder="Enter employee last name"></input>
+          </div>
+          <div className="form-row">
+            <div className="form-group col-md-2">
+              <div className="form-check">
+                <label className="form-check-label">
+                <input className="form-check-input" onChange={this.onHourlyChecked} disabled={this.state.User.salary} defaultChecked={this.state.User.hourly} type="checkbox" value=""></input>
+                  &nbsp;Hourly
+                </label>
+              </div>
+            </div>
+            <div className="form-group">
+              <div className="form-check">
+                <label className="form-check-label">
+                <input className="form-check-input" onChange={this.onSalaryChecked} disabled={this.state.User.hourly} type="checkbox" value=""></input>
+                  &nbsp;Salary
+                </label>
+              </div>
+            </div>
+          </div>
+            <div className="form-group col-md-4">
+              <label>Fica	&#37;
+                <input onChange={this.onFicaChanged} className="form-control" type="number" step="0.0001" placeholder="0.0"></input>
+              </label>
+            </div>
+            <div className="form-group col-md-4">
+              <label>Federal &#37;
+                <input onChange={this.onFederalChanged} className="form-control" type="number" step="0.0001" placeholder="0.0"></input>
+              </label>
+            </div>
+            <div className="form-group col-md-4">
+              <label>State &#37;
+                <input onChange={this.onStateChanged} className="form-control" type="number" step="0.0001" placeholder="0.0"></input>
+              </label>
+            </div>
+            <div className="btn-toolbar mb-2"> 
+              <div className="btn-group mr-2">
+                <button type="submit" className="btn btn-primary">Add Employee</button>
+              </div>
+              <div className="btn-group mr-2">
+                <button type="submit" className="btn btn-secondary">Payroll</button>
+              </div>
+            </div>
+        </form>
+      </div>
     );
   }
 }
