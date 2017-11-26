@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 const uuid = require('uuid/v4');
-//import { uuidv4 } from 'uuid'
-//import { uuid } from 'uuid/v4'
 
 import { firebase } from '../firebase/firebase'
 
@@ -85,10 +83,6 @@ export default class LandingPage extends Component {
     this.setState({ User: user })
   }
 
-  onAddEmployeeClicked = (event) => {
-    // save the state into firebase ref
-  }
-
   render() {
     return (
       <div className="setup-container">
@@ -136,7 +130,7 @@ export default class LandingPage extends Component {
             </div>
             <div className="btn-toolbar mb-2"> 
               <div className="btn-group mr-2">
-                <button onClick={this.onAddEmployeeClicked} type="submit" className="btn btn-primary">Add Employee</button>
+                <button type="submit" className="btn btn-primary">Add Employee</button>
               </div>
               <div className="btn-group mr-2">
                 <button type="submit" className="btn btn-secondary">Payroll</button>
