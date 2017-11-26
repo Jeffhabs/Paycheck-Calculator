@@ -1,16 +1,18 @@
-import React from 'react';
-import { LandingPage } from './components/LandingPage';
-import ReduxPromise from 'redux-promise';
-import ReactDOM from 'react-dom';
-import { BrowserRouter, Route } from 'react-router';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { BrowserRouter, Route } from 'react-router'
+import { Provider } from 'react-redux'
+import { firebase } from './firebase/firebase'
+import thunk from 'redux-thunk'
+import { createLogger } from 'redux-logger'
+import { createStore, applyMiddleware } from 'redux'
+import App from './components/app'
+//import rootRedcuer from './reducers/index'
+import reducers from './reducers'
 
-import App from './components/app';
-import reducers from './reducers';
-import { firebase } from './firebase/firebase';
+const logger = createLogger();
 
-const createStoreWithMiddleware = applyMiddleware()(createStore);
+const createStoreWithMiddleware = applyMiddleware(thunk, logger)(createStore);
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <App />

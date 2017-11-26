@@ -1,7 +1,11 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+const uuid = require('uuid/v4');
+//import { uuidv4 } from 'uuid'
+//import { uuid } from 'uuid/v4'
 
+import { firebase } from '../firebase/firebase'
 
 export default class LandingPage extends Component {
   constructor(props) {
@@ -9,6 +13,7 @@ export default class LandingPage extends Component {
 
     this.state = {
       User: {
+        uuid: '',
         fName: '',
         lName: '',
         hourly: true,
@@ -20,50 +25,68 @@ export default class LandingPage extends Component {
   }
 
   onFnameChange = (event) => {
-    var user = {...this.state.User };
-    user.fName = event.target.value;
-    this.setState({ User: user });
+    let user = {...this.state.User }
+    user.fName = event.target.value
+    this.setState({ User: user })
   }
 
   onFormSubmit = (event) => {
-    event.preventDefault();
-    console.log('USER: ', this.state.User);
+    //event.preventDefault()
+    let uid = uuid();
+    let user = {...this.state.User }
+    user.uuid = uid;
+    this.setState({ User: user })
+    // if fields aren't empty
+    // TODO: Add form validation
+    firebase.database().ref('/employees').push({
+      first_name: this.state.User.fName,
+      last_name:  this.state.User.lName,
+      hourly: this.state.User.hourly,
+      fica: this.state.User.fica,
+      federal: this.state.User.federal,
+      state: this.state.User.state
+    })
+    console.log('USER: ', this.state.User)
   }
 
   onLnameChange = (event) => {
-    var user = {...this.state.User };
-    user.lName = event.target.value;
-    this.setState({ User: user });
+    var user = {...this.state.User }
+    user.lName = event.target.value
+    this.setState({ User: user })
   }
 
   onHourlyChecked = (event) => {
-    var user = {...this.state.User };
-    user.hourly ? user.hourly = false : user.hourly = true;
-    this.setState({ User: user });
+    var user = {...this.state.User }
+    user.hourly ? user.hourly = false : user.hourly = true
+    this.setState({ User: user })
   }
 
   onSalaryChecked = (event) => {
-    var user = {...this.state.User };
-    user.salary ? user.salary = false : user.salary = true;
-    this.setState({ User: user });
+    var user = {...this.state.User }
+    user.salary ? user.salary = false : user.salary = true
+    this.setState({ User: user })
   }
 
   onFicaChanged = (event) => {
-    var user = {...this.state.User };
-    user.fica = event.target.value;
-    this.setState({ User: user });
+    var user = {...this.state.User }
+    user.fica = event.target.value
+    this.setState({ User: user })
   }
 
   onFederalChanged = (event) => {
-    var user = {...this.state.User };
-    user.federal = event.target.value;
-    this.setState({ User: user });
+    var user = {...this.state.User }
+    user.federal = event.target.value
+    this.setState({ User: user })
   }
 
   onStateChanged = (event) => {
-    var user = {...this.state.User };
-    user.state = event.target.value;
-    this.setState({ User: user });
+    var user = {...this.state.User }
+    user.state = event.target.value
+    this.setState({ User: user })
+  }
+
+  onAddEmployeeClicked = (event) => {
+    // save the state into firebase ref
   }
 
   render() {
@@ -113,7 +136,7 @@ export default class LandingPage extends Component {
             </div>
             <div className="btn-toolbar mb-2"> 
               <div className="btn-group mr-2">
-                <button type="submit" className="btn btn-primary">Add Employee</button>
+                <button onClick={this.onAddEmployeeClicked} type="submit" className="btn btn-primary">Add Employee</button>
               </div>
               <div className="btn-group mr-2">
                 <button type="submit" className="btn btn-secondary">Payroll</button>
