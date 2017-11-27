@@ -2,6 +2,10 @@ body{
   background-color: lightgray;
 }
 
+.title {
+  color: white;
+}
+
 .setup-container{
   padding: 2%;
   margin: 5%;
@@ -11,11 +15,73 @@ body{
   box-shadow: rgba(0, 0, 0, 0.3) 10px 10px 10px;
 }
 
-.col-md-4 {
+.payroll-container {
+  background-color: cadetblue;
+  /* min-height: 100vh; */
+  padding: 15px;
+}
+
+.list-group {
+  max-height: 21.5em;
+  overflow-y: scroll;
+  padding-bottom: 0px;
+}
+
+.list-group-item {
+  cursor: pointer;
+}
+
+.list-group-item:hover {
+  background-color: #eee;
+}
+
+.row {
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
+
+.newBtn {
+  float: left;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-bottom: 6px;
+  padding-top: 6px;
+}
+
+.calculate {
+  padding-left:0px;
+}
+
+.employee-details {
+  min-height: 21.5em;
+  background-color: white;
+  border-radius: 3px;
+}
+
+.paycheck-details {
+  min-height: 21.5em;
+  margin-left: 15px;
+  padding-top: 10px;
+  background-color: white;
+  border-radius: 3px;
+}
+
+.hours {
+  margin-bottom: 15px;
   padding-left: 0px;
 }
 
-.col-md-2 {
+.numbers {
+  padding-left: 0px;
+  text-align: right;
+}
+
+.fields {
+  padding-left: 0px;
+}
+
+.col-md-7 {
   padding-left: 0px;
 }
 

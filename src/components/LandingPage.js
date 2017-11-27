@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { Redirect } from 'react-router-dom'
 const uuid = require('uuid/v4');
 
 import { firebase } from '../firebase/firebase'
@@ -18,7 +19,8 @@ export default class LandingPage extends Component {
         fica: 0,
         federal: 0,
         state: 0
-      }
+      },
+      redirect: false
     }
   }
 
@@ -29,7 +31,7 @@ export default class LandingPage extends Component {
   }
 
   onFormSubmit = (event) => {
-    //event.preventDefault()
+    event.preventDefault()
     let uid = uuid();
     let user = {...this.state.User }
     user.uuid = uid;
@@ -83,7 +85,15 @@ export default class LandingPage extends Component {
     this.setState({ User: user })
   }
 
+  onPayrollClicked = () => {
+    // go to the payroll page
+    this.setState({ redirect: true })
+  }
+
   render() {
+    if (this.state.redirect) {
+      return <Redirect path to='/payroll'/>
+    }
     return (
       <div className="setup-container">
         <form onSubmit={this.onFormSubmit}>
@@ -133,7 +143,7 @@ export default class LandingPage extends Component {
                 <button type="submit" className="btn btn-primary">Add Employee</button>
               </div>
               <div className="btn-group mr-2">
-                <button type="submit" className="btn btn-secondary">Payroll</button>
+                <button onClick={this.onPayrollClicked}type="submit" className="btn btn-secondary">Payroll</button>
               </div>
             </div>
         </form>
