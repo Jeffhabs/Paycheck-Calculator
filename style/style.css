@@ -6,6 +6,10 @@ body{
   color: white;
 }
 
+.container {
+  padding-top: 15px;
+}
+
 .setup-container{
   padding: 2%;
   margin: 5%;
@@ -19,12 +23,14 @@ body{
   background-color: cadetblue;
   /* min-height: 100vh; */
   padding: 15px;
+  border-radius: 3px;
 }
 
 .list-group {
   max-height: 21.5em;
   overflow-y: scroll;
   padding-bottom: 0px;
+  padding-right: 1px;
 }
 
 .list-group-item {
@@ -53,18 +59,31 @@ body{
   padding-left:0px;
 }
 
+.employee-container {
+  padding-right:5px;
+}
 .employee-details {
   min-height: 21.5em;
   background-color: white;
   border-radius: 3px;
+  margin-right: 1px;
 }
 
 .paycheck-details {
   min-height: 21.5em;
-  margin-left: 15px;
+  /* margin-left: 15px; */
   padding-top: 10px;
   background-color: white;
   border-radius: 3px;
+}
+
+.calCol {
+  padding-right: 0px;
+}
+
+.calcBtn {
+  float: right;
+  color: white;
 }
 
 .hours {
@@ -81,9 +100,10 @@ body{
   padding-left: 0px;
 }
 
-.col-md-7 {
+.col-md-9 {
   padding-left: 0px;
 }
+
 
 .btn-primary{
   background-color: darkorange;

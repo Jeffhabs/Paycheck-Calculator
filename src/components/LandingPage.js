@@ -106,7 +106,7 @@ export default class LandingPage extends Component {
             <input onChange={this.onLnameChange} type="text" className="form-control" placeholder="Enter employee last name"></input>
           </div>
           <div className="form-row">
-            <div className="form-group col-md-2">
+            <div className="form-group fields col-md-2">
               <div className="form-check">
                 <label className="form-check-label">
                 <input className="form-check-input" onChange={this.onHourlyChecked} disabled={this.state.User.salary} defaultChecked={this.state.User.hourly} type="checkbox" value=""></input>
@@ -123,17 +123,17 @@ export default class LandingPage extends Component {
               </div>
             </div>
           </div>
-            <div className="form-group col-md-4">
+            <div className="form-group fields col-md-4">
               <label>Fica	&#37;
                 <input onChange={this.onFicaChanged} className="form-control" type="number" step="0.0001" placeholder="0.0"></input>
               </label>
             </div>
-            <div className="form-group col-md-4">
+            <div className="form-group fields col-md-4">
               <label>Federal &#37;
                 <input onChange={this.onFederalChanged} className="form-control" type="number" step="0.0001" placeholder="0.0"></input>
               </label>
             </div>
-            <div className="form-group col-md-4">
+            <div className="form-group fields col-md-4">
               <label>State &#37;
                 <input onChange={this.onStateChanged} className="form-control" type="number" step="0.0001" placeholder="0.0"></input>
               </label>

@@ -6,15 +6,24 @@ import { getEmployees } from '../actions/getEmployees'
 import EmployeeDetails from './employee_details'
 import { selectEmployee } from '../actions/getEmployee'
 import PaycheckDetails from './paycheck_details'
+import { Redirect } from 'react-router-dom'
 
 class PayrollPage extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      redirect: false
+    }
+
   }
 
   componentDidMount() {
     this.props.onGetEmployees();
+  }
+
+  onNewEmployeeClicked = () => {
+    this.setState({redirect: true})
   }
 
   renderList() {
@@ -29,10 +38,13 @@ class PayrollPage extends Component {
   }
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect path to='/'/>
+    }
     return (
       <div className='payroll-container'>
         <div className='row'>
-          <div className='title fields col-md-3'>
+          <div className='title fields col-md-4'>
             <h3>Employees</h3>
           </div>
           <div className='title col-md-4'>
@@ -44,20 +56,22 @@ class PayrollPage extends Component {
         </div>
         <div className='payroll row'>
           <div>
-            <ul className='list-group col-sm-3'>
+            <ul className='list-group col-md-4'>
               { this.renderList() }
             </ul>
           </div>
-          <EmployeeDetails />
+          <div className='employee-container'>
+            <EmployeeDetails />
+          </div>
           <PaycheckDetails />
         </div>
         {/* New Employee Button */}
         <div className='row'>
-          <div className="col-md-7">
-            <button type="submit" className="btn btn-primary">New Employee</button>
+          <div className="col-md-9">
+            <button onClick={this.onNewEmployeeClicked} type="submit" className="btn btn-primary">New Employee</button>
           </div>
-          <div className="col-md-4">
-            <button type="submit" className="btn btn-primary">Calculate</button>
+          <div className="calCol col-md-3">
+            <button type="submit"  className="calcBtn btn btn-secondary">Calculate</button>
           </div>
         </div>
       </div>

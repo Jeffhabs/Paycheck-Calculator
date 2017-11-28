@@ -17,12 +17,14 @@ class EmployeeDetails extends Component {
     }
     let type = (this.props.employee.hourly) ? 'hourly' : 'salary'
     return (
-      <div className='employee-details col-md-4'>
-        <h4>Name: {`${this.props.employee.first_name} ${this.props.employee.last_name}`}</h4>
-          <p>Type: {`${type}`}</p>
-          <p>FICA%: {this.props.employee.fica}</p>
-          <p>Federal%: {this.props.employee.federal}</p>
-          <p>State%: {this.props.employee.state}</p>
+      <div className='employee-container'>
+        <div className='employee-details col-md-4'>
+          <h4>Name: {`${this.props.employee.first_name} ${this.props.employee.last_name}`}</h4>
+            <p>Type: {`${type}`}</p>
+            <p>FICA%: {this.props.employee.fica}</p>
+            <p>Federal%: {this.props.employee.federal}</p>
+            <p>State%: {this.props.employee.state}</p>
+        </div>
       </div>
     );
   }
