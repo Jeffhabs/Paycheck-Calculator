@@ -10,6 +10,9 @@ body{
   padding-top: 15px;
 }
 
+p {
+  padding-left:5px;
+}
 .setup-container{
   padding: 2%;
   margin: 5%;
@@ -22,8 +25,8 @@ body{
 .payroll-container {
   background-color: cadetblue;
   /* min-height: 100vh; */
-  padding: 15px;
   border-radius: 3px;
+  padding: 0px 15px 15px 15px;
 }
 
 .list-group {
@@ -95,9 +98,14 @@ body{
   padding-left: 0px;
   text-align: right;
 }
-
+/* 
 .fields {
-  padding-left: 0px;
+  padding-left: 5px;
+  padding-top: 5px;
+} */
+
+.pay {
+  margin-bottom: 5px
 }
 
 .col-md-9 {

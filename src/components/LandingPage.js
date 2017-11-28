@@ -31,7 +31,7 @@ export default class LandingPage extends Component {
   }
 
   onFormSubmit = (event) => {
-    event.preventDefault()
+    //event.preventDefault()
     let uid = uuid();
     let user = {...this.state.User }
     user.uuid = uid;

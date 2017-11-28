@@ -19,7 +19,7 @@ class EmployeeDetails extends Component {
     return (
       <div className='employee-container'>
         <div className='employee-details col-md-4'>
-          <h4>Name: {`${this.props.employee.first_name} ${this.props.employee.last_name}`}</h4>
+          <h4>{`${this.props.employee.first_name} ${this.props.employee.last_name}`}</h4>
             <p>Type: {`${type}`}</p>
             <p>FICA%: {this.props.employee.fica}</p>
             <p>Federal%: {this.props.employee.federal}</p>

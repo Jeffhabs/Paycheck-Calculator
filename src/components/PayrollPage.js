@@ -44,7 +44,7 @@ class PayrollPage extends Component {
     return (
       <div className='payroll-container'>
         <div className='row'>
-          <div className='title fields col-md-4'>
+          <div className='title col-md-4'>
             <h3>Employees</h3>
           </div>
           <div className='title col-md-4'>
@@ -69,9 +69,6 @@ class PayrollPage extends Component {
         <div className='row'>
           <div className="col-md-9">
             <button onClick={this.onNewEmployeeClicked} type="submit" className="btn btn-primary">New Employee</button>
-          </div>
-          <div className="calCol col-md-3">
-            <button type="submit"  className="calcBtn btn btn-secondary">Calculate</button>
           </div>
         </div>
       </div>
