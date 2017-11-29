@@ -15,8 +15,24 @@ class PaycheckDetails extends Component {
       fica: 0,
       federal: 0,
       state: 0,
-      net: 0
+      net: 0,
+      isCurrentUser: false
     }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // destructor ... can do multiple props at a time
+    let employee = this.props.employee
+    let nextKey = nextProps.employee.key
+
+    if (!employee) {
+      this.setState({ isCurrentUser: true })
+    } else {
+      if (nextKey != employee.key) {
+        this.setState({ isCurrentUser: false, hours: 0, pay: 0 })
+      }
+    }
+
   }
 
   onHoursChanged = (event) => {
@@ -38,7 +54,7 @@ class PaycheckDetails extends Component {
           <div className='hours col-md-12'>
             <div className='input-group'>
               <span className='input-group-addon' id='basic-addon3'>Salary</span>
-              <input onChange={this.onSalaryChanged} type='number' className='form-control' placeholder='Enter salary' aria-describedby='basic-addon3'></input>
+              <input onSubmit={this.onSalaryChanged} type='number' className='form-control' placeholder='Enter salary' aria-describedby='basic-addon3'>{this.state.hours}</input>
             </div>
           </div>
         </div>
@@ -49,13 +65,13 @@ class PaycheckDetails extends Component {
         <div className='hours col-md-6'>
           <div className='input-group'>
             <span className='input-group-addon' id='basic-addon3'>Hours</span>
-            <input onChange={this.onHoursChanged} type='number' className='form-control'  aria-describedby='basic-addon3'></input>
+            <input onChange={this.onHoursChanged} value={this.state.hours} type='number' className='form-control'  aria-describedby='basic-addon3'></input>
           </div>
         </div>
         <div className='hours col-md-6'>
           <div className='input-group'>
             <span className='input-group-addon'>$</span>
-            <input onChange={this.onPayChanged} type='number' className='form-control' aria-label='Amount (to the nearest dollar)'></input>
+            <input onChange={this.onPayChanged} value={this.state.pay} type='number' className='form-control' aria-label='Amount (to the nearest dollar)'></input>
             <span className='input-group-addon'>.00</span>
           </div>
         </div>
@@ -172,7 +188,7 @@ class PaycheckDetails extends Component {
   }
 
   renderButton = () => {
-    if(this.state.hours > 0 && this.state.pay > 0) {
+    if(this.state.hours > 0 && this.state.pay > 0 && this.state.isCurrentUser) {
       return (
         <div className="toggleBtn col-md-9">
           <button onClick={this.onCalculatePaycheck} type="submit" className="title pay btn btn-secondary">Calculate Paycheck</button>
@@ -187,7 +203,6 @@ class PaycheckDetails extends Component {
         <h4>Select an employee first to calculate paycheck.</h4>
       </div>
     }
-    let typeDisplay = this.props.employee.hourly ? 'Hours' : 'Salary'
     return (
       <div className='paycheck-details col-md-4'>
         {this.renderInput()}

@@ -11,7 +11,7 @@ export default class App extends Component {
       <BrowserRouter>
         <div>
           <Switch>
-            <Route path="/payroll" component={ PayrollPage } /> 
+            <Route path="/payroll" component={ PayrollPage } />
             <Route path="/" component={ LandingPage }/>
           </Switch>
         </div>
